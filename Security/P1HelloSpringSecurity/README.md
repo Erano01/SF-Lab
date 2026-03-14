@@ -46,9 +46,8 @@ Header'in değerinde, client önce `Basic` önekini, ardından da username ve pa
 Uygulamanız dolaylı (örtük - implicitly) olarak tüm endpointleri güvence altına alır. Bu nedenle, örneğimiz için yapmamız gereken tek şey endpointi eklemektir.
 Ayrıca, endpointlerden herhangi birine erişebilen yalnızca bir kullanıcı vardır, bu nedenle bu durumda authorization konusunda yapılacak çok fazla şey olmadığını söyleyebiliriz.
 
-
-
 ## Customizing UserDetailsService & PasswordEncoder for Basic Authentication
+
 Custom UserDetailsService tipinde bean tanımlamayı öğreneceksiniz.
 Bunu, Spring Boot tarafından konfigure edilen varsayılanı override etmek için yapacağız.
 Bu proje için Spring Security tarafından sağlanan gerçekleştirmeleri ayrıntılı olarak ele almayacağız veya kendi gerçekleştirmemizi oluşturmayacağız.
@@ -58,8 +57,8 @@ Bu componenti kendi seçtiğimiz bir gerçekleştirme ile nasıl override ettiğ
 Bu sayede authentication sürecinde kullanılan credential’ları kendimiz yönetebiliriz. Bu örnekte, kendi sınıfımızı gerçekleştirmiyoruz, bunun yerine Spring Security tarafından sağlanan bir gerçekleştirmeyi kullanıyoruz.
 Ve netice olarak Spring Security'nin bize sağlamış olduğu gerçekleştirmeyi konfigure ediyoruz
 
-NOTE
-Java'daki arayüzler, nesneler arasında sözleşmeler(contracts) tanımlar. Uygulamanın sınıf tasarımında, birbirini kullanan nesneleri decouple etmek için arayüzler kullanırız. 
+> [!NOTE]
+> Java'daki arayüzler, nesneler arasında sözleşmeler(contracts) tanımlar. Uygulamanın sınıf tasarımında, birbirini kullanan nesneleri decouple etmek için arayüzler kullanırız.
 
 ![img.png](img.png)
 
@@ -71,10 +70,11 @@ NoOpPasswordEncoder instance'i password'ları plain text olarak ele alır.
 Encryptlemez veya hashleme işlemine tabi tutmaz. Eşleştirme için NoOpPasswordEncoder, yalnızca String sınıfının temel equals(Object o) methodunu kullanarak stringleri karşılaştırır.
 Bu tip bir PasswordEncoder'ı production-ready bir uygulamada kullanmamalısınız.
 NoOpPasswordEncoder, parolanın hashing algoritmasına odaklanmak istemediğiniz örnekler için iyi bir seçenektir.
-Bu nedenle, sınıfın geliştiricileri onu @Deprecated olarak işaretlemiştir ve geliştirme ortamınızda adı üstü çizili olarak görünecektir.
+Bu nedenle, sınıfın geliştiricileri onu `@Deprecated` olarak işaretlemiştir ve geliştirme ortamınızda adı üstü çizili olarak görünecektir.
 
 
 ## Applying authorization via Filter Chain
+
 Spring Security'nin varsayılan konfigurasyonunda, tüm endpointler, uygulama tarafından yönetilen geçerli bir user'iniz olduğunu varsayar.
 Ayrıca, varsayılan olarak application HTTP Basic authentication'u kullanır, ancak bu konfigurasyonu kolayca override edebilirsiniz.
 
@@ -83,22 +83,15 @@ Authentication ve authorization'u özelleştirmek için, SecurityFilterChain tip
 
 ![img_1.png](img_1.png)
 
-// Spring Security basic authenticationunda HttpSecurity üzerinden authorization kurallarını konfigure ederiz.
-// HttpSecurity bir konfigürasyon nesnesi, authorization'ı kendisi yapmıyor. Sadece "hangi kurallara göre authorize et?" sorusunun cevabını filter chain'e bağlıyor.
-// Yani HttpSecurity üzerinden yaptığın her çağrı aslında filter chain'e bir filter ekliyor ya da mevcut bir filter'ı konfigüre ediyor. Authorization kararını çalışma zamanında veren AuthorizationFilter'ın ta kendisi, HttpSecurity sadece onu inşa eden builder görevi görüyor.
-// Kısaca: tanım HttpSecurity üzerinden, execution AuthorizationFilter üzerinden.
+> Spring Security basic authenticationunda HttpSecurity üzerinden authorization kurallarını konfigure ederiz.
+> HttpSecurity bir konfigürasyon nesnesi, authorization'ı kendisi yapmıyor. Sadece "hangi kurallara göre authorize et?" sorusunun cevabını filter chain'e bağlıyor.
+> Yani HttpSecurity üzerinden yaptığın her çağrı aslında filter chain'e bir filter ekliyor ya da mevcut bir filter'ı konfigüre ediyor. Authorization kararını çalışma zamanında veren AuthorizationFilter'ın ta kendisi, HttpSecurity sadece onu inşa eden builder görevi görüyor.
+> Kısaca: tanım HttpSecurity üzerinden, execution AuthorizationFilter üzerinden.
 
 ## Customizing UserDetailsService & PasswordEncoder & applying authorization via Filter Chain
+
 Spring Security ile konfigurasyon oluşturmanın kafa karıştırıcı yönlerinden biri, aynı şeyi konfigure etmek için birden fazla yolun olmasıdır.
 Bu örneğimizde yukarıda ki örneklerde yaptığımız konfigurasyonları SecurityFilterChain bean'inde birleştireceğiz.
+PasswordEncoder'i bean olarak farklı bir methodda yapacağız ancak UserDetails ile ilgili konfigurasyonu SecurityFilterChain bean'inde yapacağız.
 
-
-
-
-
-
-
-
-
-
-
+![img_2.png](img_2.png)
