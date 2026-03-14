@@ -73,3 +73,9 @@ Bu nedenle, sınıfın geliştiricileri onu @Deprecated olarak işaretlemiştir 
 
 ![img.png](img.png)
 
+## Applying authorization via Filter Chain
+
+![img_1.png](img_1.png)
+
+
+## Customizing UserDetailsService & PasswordEncoder & applying authorization via Filter Chain
