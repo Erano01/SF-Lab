@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Security" />
             <option value="$PROJECT_DIR$/Security/P1HelloSpringSecurity" />
+            <option value="$PROJECT_DIR$/Security/P2ConfiguringAuthentication" />
           </set>
         </option>
       </GradleProjectSettings>

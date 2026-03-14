@@ -1,5 +1,6 @@
 package me.erano.com.config;
 
+import me.erano.com.component.CustomAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -16,31 +17,51 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class ProjectConfig {
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        // NEVER USE IT IN PRODUCTION
-        return NoOpPasswordEncoder.getInstance();
+    private final CustomAuthenticationProvider authenticationProvider;
+
+    public ProjectConfig(CustomAuthenticationProvider authenticationProvider) {
+        this.authenticationProvider = authenticationProvider;
     }
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.httpBasic(Customizer.withDefaults());
+
+        httpSecurity.authenticationProvider(authenticationProvider);
+
         httpSecurity.authorizeHttpRequests(
                 // all the requests require authentication
                 auth -> auth.anyRequest().authenticated()
         );
-
-        UserDetails userDetails = User.withUsername("john")
-                .password("12345")
-                .authorities("read")
-                .build();
-
-        UserDetailsService userDetailsService = new InMemoryUserDetailsManager(userDetails);
-        httpSecurity.userDetailsService(userDetailsService);
-
         return httpSecurity.build();
     }
+
+//    @Bean
+//    PasswordEncoder passwordEncoder() {
+//        // NEVER USE IT IN PRODUCTION
+//        return NoOpPasswordEncoder.getInstance();
+//    }
+
+//    @Bean
+//    public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+//
+//        httpSecurity.httpBasic(Customizer.withDefaults());
+//        httpSecurity.authorizeHttpRequests(
+//                // all the requests require authentication
+//                auth -> auth.anyRequest().authenticated()
+//        );
+//
+//        UserDetails userDetails = User.withUsername("john")
+//                .password("12345")
+//                .authorities("read")
+//                .build();
+//
+//        UserDetailsService userDetailsService = new InMemoryUserDetailsManager(userDetails);
+//        httpSecurity.userDetailsService(userDetailsService);
+//
+//        return httpSecurity.build();
+//    }
 
 //    @Bean
 //    UserDetailsService userDetailsService() {

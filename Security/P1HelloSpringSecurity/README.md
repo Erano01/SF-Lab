@@ -95,3 +95,33 @@ Bu örneğimizde yukarıda ki örneklerde yaptığımız konfigurasyonları Secu
 PasswordEncoder'i bean olarak farklı bir methodda yapacağız ancak UserDetails ile ilgili konfigurasyonu SecurityFilterChain bean'inde yapacağız.
 
 ![img_2.png](img_2.png)
+
+## Defining custom authentication logic
+Daha önce de gözlemlediğiniz gibi, Spring Security componentleri oldukça esneklik sağlar ve uygulamalarımızın mimarisine uyarlarken birçok seçenek sunar.
+Şimdiye kadar, Spring Security mimarisinde UserDetailsService ve PasswordEncoder'ın amacını öğrendiniz.
+Artık bu işleri devreden(delegate) componenti, yani AuthenticationProvider'ı nasıl özelleştirebileceğinizi öğrenme zamanı geldi.
+AuthenticationProvider, authentication mantığını gerçekleştirir ve user ile password management için UserDetailsService ile PasswordEncoder'a devreder.
+
+// Şuanda yukarıda ki konfigurasyonlara göre biz halen DaoAuthenticationProvider yani Spring Security'nin default authentication provider implementasyonunu kullanıyoruz.
+// Yani yukarıda ki örneklerde sadece Spring Security'nin default implementasyonunu konfigure ettik.
+// DaoAuthenticationProvider -> Spring Security'nin default authentication provider implementasyonu.
+// Aşağıdaki örneğimizde yeni custom AuthenticationProvider sağlayacağız.
+
+Spring Security mimarisinde tasarlanan sorumlulukları (Security projesinin readme dosyasına bakınız) göz önünde bulundurmanızı öneririm.
+Bu mimari, fine-grained sorumluluklarla loosely-coupled bir şekilde bağlanmıştır. Bu tasarım, Spring Security'yi esnek ve uygulamalarınızla entegre etmeyi kolaylaştıran şeylerden biridir.
+Esnekliğinden nasıl yararlandığınıza bağlı olarak, tasarımı da değiştirebilirsiniz. Bu yaklaşımlarda dikkatli olmalısınız çünkü çözümünüzü karmaşıklaştırabilirler.
+Örneğin, default AuthenticationProvider'ı, artık bir UserDetailsService veya PasswordEncoder'a ihtiyaç duymayacağınız şekilde override etmeyi seçebilirsiniz.
+
+![img_3.png](img_3.png)
+
+ve konfigurasyonumuz şöyle gözükmeli:
+
+![img_4.png](img_4.png)
+
+## Using multiple configuration classes
+
+
+
+
+
+
