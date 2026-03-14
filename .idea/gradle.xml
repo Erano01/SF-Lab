@@ -11,10 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Security" />
-            <option value="$PROJECT_DIR$/Security/Filters" />
-            <option value="$PROJECT_DIR$/Security/HelloSpringSecurity" />
-            <option value="$PROJECT_DIR$/Security/ManagingPasswords" />
-            <option value="$PROJECT_DIR$/Security/ManagingUsers" />
+            <option value="$PROJECT_DIR$/Security/P1HelloSpringSecurity" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -3,6 +3,7 @@ package me.erano.com;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// Spring Security Architecture
 @SpringBootApplication
 public class Application {
 
