@@ -1,6 +1,6 @@
 # SF-Lab
 
-> A multi-module lab for studying the Spring Framework ecosystem — from security to data, web, and beyond.
+> A multi-module lab for studying the Spring Framework ecosystem, from security to data, web, and beyond.
 
 ---
 
@@ -8,7 +8,7 @@
 
 SF-Lab is a Gradle multi-module project designed for hands-on exploration of the Spring Framework ecosystem. Each module focuses on a specific Spring topic and contains isolated, runnable examples with notes.
 
-The goal is not to build a production application, but to deeply understand how each part of the ecosystem works — independently and together.
+The goal is not to build a production application, but to deeply understand how each part of the ecosystem works, independently and together.
 
 ---
 

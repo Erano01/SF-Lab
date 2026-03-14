@@ -29,7 +29,7 @@ HTTP Basic authentication ile endpointlerden herhangi birini çağırmak için b
 
 Spring Boot mimarisinde Security uygularken authentication ve authorization sürecinde rol alan ana aktörleri bilmemiz gereklidir.
 Çünkü uygulamanızın ihtiyaçlarına uyacak şekilde önceden konfigure edilmiş bu componentleri override etmeniz gerekecek.
-Projenizde security bağımlılıklarını ekleyip hiçbir konfigürasyon eklemediğinizde — yani Basic Auth yaptığınızda — bu componentlerin önceden konfigure edilmiş bir gerçekleştirmesi vardır.
+Projenizde security bağımlılıklarını ekleyip hiçbir konfigürasyon eklemediğinizde, yani Basic Auth yaptığınızda, bu componentlerin önceden konfigure edilmiş bir gerçekleştirmesi vardır.
 
 İşte bu componentlerin genel tablosu:
 
@@ -49,7 +49,7 @@ zincirdeki bir sonraki halkaya geçip geçmeyeceğine karar veren bağımsız bi
 - Bunları da `AuthenticationManager` handle eder ve ilgili provider'a iletir.
 - Tüm filter'lar geçilince request'imiz `DispatcherServlet`'e ulaşır ve controller çalışır.
 
-> 💡 Güvenlik görevlisi gibi düşünebilirsin — giriş yaparken üzerini kontrol edip, güvenlik kartının üzerine datalar yazar.
+> 💡 Güvenlik görevlisi gibi düşünebilirsin, giriş yaparken üzerini kontrol edip, güvenlik kartının üzerine datalar yazar.
 
 ![Filter](img_1.png)
 
@@ -62,7 +62,7 @@ Her filter işini yapıp `chain.doFilter()` ile bir sonrakine devreder. Sıra bo
 Ancak birden fazla Filter Chain olabilir; her chain farklı bir URL pattern'ına karşılık gelir.
 
 > 💡 Bir yolu kapatan 7 farklı kapı olduğunu düşün ve her kapı için bir güvenlik görevlisi olsun. Bu 7 kapının tümü filter chain'dir.
-> Bu örüntü defalarca gerçekleşebilir yol boyunca — bu da birden fazla Filter Chain olabilirliğini gösterir.
+> Bu örüntü defalarca gerçekleşebilir yol boyunca, bu da birden fazla Filter Chain olabilirliğini gösterir.
 
 ![Filter Chain](img_2.png)
 
@@ -81,7 +81,7 @@ Bu temizleme işini `SecurityContextPersistenceFilter` yapar.
 
 ![Security Context Holder](img_3.png)
 
-> **Not — Stateless JWT Mimarisi:**
+> **Not, Stateless JWT Mimarisi:**
 > Stateless JWT mimarisinde her request kendi token'ını taşıdığı için `SecurityContext` hiçbir zaman session'a yazılmaz,
 > her seferinde sıfırdan doldurulur ve request bitince silinir. `SecurityContextHolder` hâlâ thread-local olarak tutulur, ancak sadece session'a yazılmaz.
 
@@ -108,7 +108,7 @@ Authentication sürecini kime devredeceğini bilen arayüzdür. Kendisi doğrula
 - **false** dönerse bir sonrakine geçer.
 - Hiçbiri sahip çıkmazsa `ProviderNotFoundException` fırlatır.
 
-Arkada kaç provider var, hangisi devreye girdi — filter'ın umurunda değil. Bu da **Facade pattern**'in ta kendisi.
+Arkada kaç provider var, hangisi devreye girdi, filter'ın umurunda değil. Bu da **Facade pattern**'in ta kendisi.
 
 **Referanslar:**
 - [AuthenticationManager](https://docs.spring.io/spring-security/reference/api/java/org/springframework/security/authentication/AuthenticationManager.html)
@@ -122,7 +122,7 @@ Asıl doğrulama işini yapan bileşendir. `AuthenticationManager` *"kime soraca
 
 ![Authentication Provider](img_6.png)
 
-> **DaoAuthenticationProvider** — Spring Security'nin varsayılan authentication provider implementasyonu:
+> **DaoAuthenticationProvider**, Spring Security'nin varsayılan authentication provider implementasyonu:
 > - `UsernamePasswordAuthenticationToken` alır
 > - `UserDetailsService` ile DB'den kullanıcıyı çeker
 > - `PasswordEncoder` ile şifreyi doğrular
