@@ -19,6 +19,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = String.valueOf(authentication.getCredentials());
 
+        // We are no longer need for PasswordEncoder or userDetails bean configuration.
         if (username.equals("john") && password.equals("12345")) {
             return new UsernamePasswordAuthenticationToken(username, password, Arrays.asList());
         } else {
