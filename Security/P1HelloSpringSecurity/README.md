@@ -122,5 +122,15 @@ ve konfigurasyonumuz şöyle gözükmeli:
 
 ## Using multiple configuration classes
 
+Daha önce gerçekleştirdiğimiz örneklerde yalnızca bir konfigurasyon sınıfı kullandık. Ancak, konfigurasyon sınıfları için bile sorumlulukları ayırmak iyi bir gerçekleştirmedir.
+Bu ayrıma ihtiyacımız var çünkü konfigurasyon daha kompleks hale gelmeye başlıyor.
+Production-ready bir application'da, muhtemelen ilk örneklerimizden daha fazla deklerasyonunuz vardır.
+Ayrıca, projeyi okunabilir hale getirmek için birden fazla konfigurasyon sınıfına sahip olmanın da yararlı olduğunu görebilirsiniz.
 
+Sorumluluk başına yalnızca bir sınıf olması her zaman iyi bir pratiktir. Bu örnekte, user management konfigurasyonunu authorization konfigurasyonundan ayırabiliriz.
 
+Bu başlıkta, custom AuthenticationProvider'ımızı comment olarak bırakıyoruz, yani onu kullanmayacağız.
+
+![img_5.png](img_5.png)
+
+![img_6.png](img_6.png)

@@ -17,25 +17,25 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class ProjectConfig {
 
-    private final CustomAuthenticationProvider authenticationProvider;
-
-    public ProjectConfig(CustomAuthenticationProvider authenticationProvider) {
-        this.authenticationProvider = authenticationProvider;
-    }
-
-    @Bean
-    public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
-
-        httpSecurity.httpBasic(Customizer.withDefaults());
-
-        httpSecurity.authenticationProvider(authenticationProvider);
-
-        httpSecurity.authorizeHttpRequests(
-                // all the requests require authentication
-                auth -> auth.anyRequest().authenticated()
-        );
-        return httpSecurity.build();
-    }
+//    private final CustomAuthenticationProvider authenticationProvider;
+//
+//    public ProjectConfig(CustomAuthenticationProvider authenticationProvider) {
+//        this.authenticationProvider = authenticationProvider;
+//    }
+//
+//    @Bean
+//    public SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
+//
+//        httpSecurity.httpBasic(Customizer.withDefaults());
+//
+//        httpSecurity.authenticationProvider(authenticationProvider);
+//
+//        httpSecurity.authorizeHttpRequests(
+//                // all the requests require authentication
+//                auth -> auth.anyRequest().authenticated()
+//        );
+//        return httpSecurity.build();
+//    }
 
 //    @Bean
 //    PasswordEncoder passwordEncoder() {
